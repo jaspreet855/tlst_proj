@@ -1,5 +1,15 @@
 
 --SQL Query to retrieve the data. 
+
+
+SELECT MONTH(jobDate) AS 'month', YEAR(jobDate) as 'year', COUNT(jobDate) AS 'jobs'
+FROM dbo.job
+WHERE DATEPART(yy, jobDate) AS (2013, 2014, 2015)
+GROUP BY MONTH(jobDate), YEAR(jobDate)
+ORDER BY YEAR(jobDate), MONTH(jobDate)
+
+
+
 SELECT  ps.numberOfUnits, ja.suburb, count(jr.jobFk) as 'num.resources', vt.label as 'vehicle'
 FROM paymentSummary ps, job j, jobAddress ja, jobResource jr, vehicleType vt
 WHERE j.id = ps.jobFk
