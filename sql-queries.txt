@@ -1,0 +1,13 @@
+
+--SQL Query to retrieve the data. 
+SELECT  ps.numberOfUnits, ja.suburb, count(jr.jobFk) as 'num.resources', vt.label as 'vehicle'
+FROM paymentSummary ps, job j, jobAddress ja, jobResource jr, vehicleType vt
+WHERE j.id = ps.jobFk
+AND j.id = ja.jobFk
+AND j.id = jr.jobFk
+AND ja.addressEndpointFk = 1
+AND j.vehicleTypeFk = vt.id 
+AND jr.personFK is not null
+AND DATEPART(yy, j.jobDate) in (2013, 2014, 2015)
+GROUP BY j.id, ps.numberOfUnits, ja.suburb, vt.label
+ORDER BY 3 DESC
