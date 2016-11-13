@@ -2,12 +2,22 @@
 --SQL Query to retrieve the data. 
 
 
-SELECT MONTH(jobDate) AS 'month', YEAR(jobDate) as 'year', COUNT(jobDate) AS 'jobs'
-FROM dbo.job
-WHERE DATEPART(yy, jobDate) AS (2013, 2014, 2015)
-GROUP BY MONTH(jobDate), YEAR(jobDate)
-ORDER BY YEAR(jobDate), MONTH(jobDate)
 
+SELECT MONTH(jobDate) AS 'month', YEAR(jobDate) AS 'year', COUNT(jobDate) AS 'jobs'
+FROM dbo.job
+WHERE DATEPART(yy, jobDate) in (2013, 2014, 2015)
+GROUP BY MONTH(jobDate), YEAR(jobDate)
+order by YEAR(jobDate), MONTH(jobDate)
+
+
+SELECT ja.suburb, count(ps.numberOfUnits)
+FROM job j, jobAddress ja, paymentSummary ps
+WHERE j.id = ja.jobFk
+AND j.id = ps.jobFk
+AND ja.addressEndpointFk = 1
+AND DATEPART(yy, j.jobDate) in (2013, 2014, 2015)
+group by ja.suburb
+ORDER BY 2 DESC
 
 
 SELECT  ps.numberOfUnits, ja.suburb, count(jr.jobFk) as 'num.resources', vt.label as 'vehicle'
