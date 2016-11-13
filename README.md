@@ -1,9 +1,10 @@
-# tlst_proj
 TLST evaluation project
 ========================
 To run this project from Rstudio:
-  * ensure that forecast and ggplot2 packages are installed
+  * ensure that forecast and ggplot2 packages are installed : 
+
     install.packages("forcast")
+
     install.packages("ggplot2")
 
   * Open file r_scrips.R 
