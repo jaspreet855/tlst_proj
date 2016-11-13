@@ -13,7 +13,8 @@ library(ggplot2)
 library(forecast)
 
 # R scripts 
-# Set the working directory
+# Set the working directory 
+# Note: change this to project's home directory
 setwd("/media/d2/r-proj/tlst_proj")
 
 # Load jobs by month data from file
